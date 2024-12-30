@@ -1,0 +1,67 @@
+﻿@model Client.Model.userlogin
+
+@{
+	Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Design by foolishdeveloper.com -->
+    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width" />    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="~/css/site1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+  
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.error))
+    {
+        <div class="alert  alert-danger">
+
+            @ViewBag.error
+
+        </div>
+    }
+
+    <form asp-action="Login" class="login100-form" method="post">
+        <h3>Login</h3>
+
+        <div class="from-group ">
+
+            <label asp-for="UserName" class="control-label "></label>
+            <input asp-for="UserName" class="form-control " placeholder="Email" />
+            <span asp-validation-for="UserName" class=" text-danger"></span>
+        </div>
+        <div class="from-group wrap-input100">
+
+            <label asp-for="Password" class="control-label "></label>
+            <input asp-for="Password" type="password" class="form-control " placeholder="password" />
+            <span asp-validation-for="Password" class=" text-danger"></span>
+        </div>
+        <div class="from-group ">
+
+
+            <input type="submit" class="btn btn-info " />
+
+        </div>
+
+
+    </form>
+
+</body>
+</html>
+
+
+
+
+
+
+

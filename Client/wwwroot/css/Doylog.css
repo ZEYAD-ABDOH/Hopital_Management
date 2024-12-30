@@ -1,0 +1,43 @@
+﻿
+/* التأكد من أن المودال يظهر فوق العناصر الأخرى */
+.modal {
+    z-index: 1050; /* قيمة أعلى */
+}
+
+/* خلفية المودال */
+.modal-backdrop {
+    z-index: 1040; /* قيمة أقل */
+}
+
+/* تخصيص الأنماط للمودال */
+.modal-dialog-custom {
+    max-width: 600px; /* عرض المودال */
+}
+
+.modal-content-custom {
+    border-radius: 10px; /* زوايا دائرية */
+}
+
+.modal-header-custom {
+    background-color: #f8f9fa; /* لون خلفية رأس المودال */
+}
+
+.modal-body-custom {
+    padding: 20px; /* مسافة داخلية */
+}
+
+.modal-title-custom {
+    color: #343a40; /* لون العنوان */
+    font-weight: bold; /* خط عريض */
+}
+
+.modal-close-button {
+    border: none; /* بدون حدود */
+    background: transparent; /* بدون خلفية */
+    color: #dc3545; /* لون الزر */
+}
+
+.modal-secondary-button {
+    background-color: #6c757d; /* لون الزر الثانوي */
+    color: white; /* لون النص */
+}

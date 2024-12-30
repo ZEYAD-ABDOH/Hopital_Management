@@ -1,0 +1,339 @@
+﻿@model IEnumerable<Client.Model.MedicalRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="pcoded-content">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-custom" role="document">
+            <div class="modal-content modal-content-custom">
+
+                <div class="modal-body modal-body-custom" id="editPartialContainer">
+                    <!-- سيتم تحميل النموذج هنا -->
+
+
+                </div>
+                <div class="modal-footer modal-footer-custom">
+                    <button type="button" class="btn btn-secondary modal-secondary-button" data-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-body">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>السجلات الطبيه</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" id="example-1">
+                                    <thead>
+
+
+                                        <tr>
+                                            <th style="display: none;">#</th>
+                                            <th>التشخيص </th>
+                                            <th> العلاج</th>
+                                            <th>الاشعة </th>
+                                            <th> اسم الطبيب </th>
+                                            <th>المريض  </th>
+
+
+                                            <th>
+                                                @*  <a onclick="showCreatDialog()" class="">
+                                                <img src="@Url.Content("~/imgs/add.png")" />
+                                                </a> *@
+                                                <a onclick="showCreatDialog()">
+                                                    <img src="@Url.Content("~/imgs/add.png")" class="btn btn-primary waves-effect waves-light add" />
+                                                </a>
+
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="danger">
+                                                <th scope="row" style="display: none;">1</th>
+
+                                                <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                    <span class="tabledit-span">
+                                                        @Html.DisplayFor(modelItem => item.Diagnosis)
+                                                    </span>
+                                                </td>
+
+                                                <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                    <span class="tabledit-span">
+                                                        @Html.DisplayFor(modelItem => item.Treatment)
+                                                    </span>
+                                                </td>
+
+
+                                                <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                    <span class="tabledit-span">
+                                                        @Html.DisplayFor(model => item.Imag_ray)
+
+                                                    </span>
+
+                                                </td>
+                                                <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                    <span class="tabledit-span">
+                                                        @Html.DisplayFor(model => item.DoctorID)
+
+                                                    </span>
+                                                </td>
+
+                                                <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                    <span class="tabledit-span">
+                                                        @Html.DisplayFor(model => item.PatientID)
+
+                                                    </span>
+                                                </td>
+                                                <td class="tabledit-view-mode" style="cursor: pointer;">
+
+                                                    <a onclick="showdelete('@item.ID')">
+                                                        <img src="@Url.Content("~/imgs/delete.png")" />
+                                                    </a>
+                                                    <a onclick="showEditDialog('@item.ID')">
+                                                        <img src="@Url.Content("~/imgs/updata.png")" alt="تعديل" width="25" height="25" />
+                                                    </a>
+
+                                                </td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <script>
+    function showEditDialog() {
+        $.ajax({
+            url: '/Medical/Create',
+            type: 'GET',
+            success: function (result) {
+                $('#editPartialContainer').html(result);
+                $('#editModal').modal('show');
+            }
+        });
+    }
+</script> 
+<script>
+    function showCreatDialog() {
+        $.ajax({
+            url: '/MedicalRecord/Create',
+            type: 'GET',
+            success: function (result) {
+                $('#editPartialContainer').html(result);
+                $('#editModal').modal('show');
+            }
+
+        });
+    }
+</script>
+
+
+
+
+
+
+
+<!--
+<script>
+
+    function showEditDialog(id) {
+            $.ajax({
+                url: '/Medical/Edit/' + id,
+                type: 'GET',
+                success: function (result) {
+                    $('#editPartialContainer').html(result);
+                    $('#editModal').modal('show');
+                }
+
+            });
+        }
+</script> -->
+<!-- <script>
+    function showdelete(id) {
+        $.ajax({
+            url: '/Medical/Delete/' + id,
+            type: 'GET',
+            success: function (result) {
+                $('#editPartialContainer').html(result);
+                $('#editModal').modal('show');
+            }
+
+        });
+    }
+</script> -->
+
+
+
+
+ @* <div class="pcoded-content">
+
+
+
+     <div class="pcoded-inner-content">
+         <div class="main-body">
+             <div class="page-wrapper">
+
+                 <div class="page-body">
+
+                     <div class="card">
+                         <div class="card-header">
+                             <h5>الدفع</h5>
+                         </div>
+                         <div class="card-block">
+                             <div class="table-responsive">
+                                
+                                 <table class="table table-striped table-bordered" id="example-1">
+                                     <thead>
+
+
+                                         <tr>
+                                             <th style="display: none;">#</th>
+                                             <th>اسم الدفعة</th>
+                                             <th>تاريخ الحفل</th>
+                                             <th>دعوات VIP</th>
+                                             <th>الدعوات العادية </th>
+                                             <th>فريق الضيافة </th>
+
+                                             <th> فريق الامنيات</th>
+
+
+                                         </tr>
+                                     </thead>
+                                     @foreach (var item in Model)
+                                     {
+                                     <tbody>
+                                         <tr class="danger">
+                                             <th scope="row" style="display: none;">1</th>
+
+
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                 <span class="tabledit-span">
+                                                     النخبة الصاعدة
+
+                                                 </span><input class="tabledit-input form-control input-sm" type="text" name="First Name" value="Mark" style="display: none;" disabled="">
+                                             </td>
+
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+                                                
+                                                
+                                                 <span class="tabledit-span">
+                                                     @Html.DisplayNameFor(model => model.Diagnosis)
+                                                 </span>
+                                                
+                                                
+                                                </td>
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+
+
+                                                 <span class="tabledit-span">
+                                                     @Html.DisplayFor(modelItem => item.Treatment)
+
+                                                 </span>
+
+
+                                             </td>
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+
+
+                                                 <span class="tabledit-span">
+                                                     @Html.DisplayFor(modelItem => item.VisitDate)
+                                                 </span>
+
+
+                                             </td>
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+
+
+                                                 <span class="tabledit-span">
+                                                     @Html.DisplayFor(modelItem => item.DoctorID)
+                                                 </span>
+
+
+                                             </td>
+
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+
+
+                                                 <span class="tabledit-span">
+                                         
+
+                                                         @if (@item.Imag_ray != null)
+                                                         {
+
+                                                     <img src="~/imgs/@item.Imag_ray" width="35px" height="35px" />
+
+                                                         }
+                                                         else
+                                                         {
+                                                     <span> لا يوجد صورة </span>
+                                                         }
+                                           
+                                                 </span>
+
+
+                                             </td>
+
+                                             <td class="tabledit-view-mode" style="cursor: pointer;">
+
+
+                                                 <span class="tabledit-span">
+                                                     @Html.DisplayFor(modelItem => item.PatientID)
+                                                 </span>
+
+
+                                             </td>
+
+                                          
+                                         </tr>
+
+                                   
+                                     </tbody>
+                                     }
+                                 </table>
+                                
+                             </div>
+                             <button type="button" class="btn btn-primary waves-effect waves-light add">اضافة </button>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ *@

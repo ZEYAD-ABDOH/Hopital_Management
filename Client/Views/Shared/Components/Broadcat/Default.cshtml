@@ -1,0 +1,16 @@
+﻿
+@model Broadcat 
+<h3 id="CountPatt" style="color:powderblue;">
+    Number Of Patient :@Model.countPat
+</h3>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+<script type="text/javascript" >
+    const cont = new signalR.HubConnectionBuilder().withUrl("https://localhost:7023/datehub").build();
+    cont.on("updatedata", function (newpa) { 
+        document.getElementById("CountPatt").innerText = newpa
+    });
+    cont.start().catch(function (err) {
+        console.error("فشل الاتصال", err.toString());
+    }
+    );
+</script>

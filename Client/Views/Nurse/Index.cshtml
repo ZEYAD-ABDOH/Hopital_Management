@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Client.Model.Nu>
+
+
+    
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var rol = Context.Session.GetString("Role");
+}
+<h1>Index</h1>
+@if ( rol != "Sales")
+{
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+  }
+@if (ViewBag.eror != null)
+{
+    <div class="alert alert-danger ">
+
+        @ViewBag.eror
+    </div>
+
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartlID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartlID)
+            </td>
+                @if ( rol != "Sales")
+                {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ID  }) |
+                    <a  asp-action="Delete1" asp-route-id="@item.ID"> حذف </a> |
+              @*    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) *@
+            </td>
+                }
+
+              
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<Client.Model.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+
+
+<div class="pcoded-content">
+    <div class="main-body"> 
+
+        <div class="page-wrapper">
+            <div cite="page-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>User Info</h5>
+                    </div>
+
+                    <div class="m-2" >
+
+                        <p class="">
+                            <a asp-action="Create" class="btn   btn-outline-success p-2">Create New</a>
+                        </p>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="example-1">
+    @await Component.InvokeAsync("Broadcat")
+    <thead>
+
+        @if (TempData["ErroMessge"] != null)
+        {
+            <div class="alert alert-danger">
+
+                @TempData["ErroMessge"]
+            </div>
+
+        }
+
+        @if (ViewBag.MessgeUpdate != null)
+        {
+            <div class="alert alert-danger">
+
+                @ViewBag.MessgeUpdate.
+            </div>
+
+        }
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+              
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartlID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+              <tr >
+                 <td >
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+               <td >
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+
+                   
+
+                    @{
+                        string ss = item.Password.Length > 4 ? item.Password.Substring(0, 2) + "****" : item.Password;
+                    }
+
+                    @ss
+
+               
+
+                @* @Html.DisplayFor(modelItem => item.Password) *@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+
+                    @{
+                        var depart = ((List<Client.Model.Departl>)ViewBag.Departs)
+
+                    .FirstOrDefault(d => d.ID == item.DepartlID)?.Name_depart;
+                    }
+                    @Html.DisplayFor(modelItem => depart)
+            </td>
+            <td>
+               @*   @Html.ActionLink("Edit", "Edit", new { /* id=itemepartls.PrimaryKey */ }) *@ 
+                    <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.ID"  >تعديل</a>|
+               @*  @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) | *@
+                    <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">حذف</a>
+                 @* @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+    </div>
+</div>

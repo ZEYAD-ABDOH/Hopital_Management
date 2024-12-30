@@ -1,0 +1,310 @@
+﻿
+@{
+    var rol = Context.Session.GetString("Role");
+}
+
+
+<!DOCTYPE html>
+<html lang="" >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Client</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/feather.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+    <style>
+
+
+        /* التأكد من أن المودال يظهر فوق العناصر الأخرى */
+        .modal {
+            z-index: 1050; /* قيمة أعلى */
+        }
+
+        /* خلفية المودال */
+        .modal-backdrop {
+            z-index: 1040; /* قيمة أقل */
+        }
+
+        /* تخصيص الأنماط للمودال */
+        .modal-dialog-custom {
+            max-width: 600px; /* عرض المودال */
+        }
+
+        .modal-content-custom {
+            border-radius: 10px; /* زوايا دائرية */
+        }
+
+        .modal-header-custom {
+            background-color: #f8f9fa; /* لون خلفية رأس المودال */
+        }
+
+        .modal-body-custom {
+            padding: 20px; /* مسافة داخلية */
+        }
+
+        .modal-title-custom {
+            color: #343a40; /* لون العنوان */
+            font-weight: bold; /* خط عريض */
+        }
+
+        .modal-close-button {
+            border: none; /* بدون حدود */
+            background: transparent; /* بدون خلفية */
+            color: #dc3545; /* لون الزر */
+        }
+
+        .modal-secondary-button {
+            background-color: #6c757d; /* لون الزر الثانوي */
+            color: white; /* لون النص */
+        }
+
+    </style>
+    
+</head>
+
+
+<body themebg-pattern="theme1">
+
+    <div class="loader-bg" style="display: none;">
+        <div class="loader-bar"></div>
+    </div>
+
+    <div id="pcoded" class="pcoded iscollapsed" nav-type="st2" theme-layout="vertical" vertical-placement="left" vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded" vertical-effect="shrink" vnavigation-view="view1" fream-type="theme1" layout-type="light">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="themelight1" pcoded-header-position="fixed">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo" logo-theme="theme6">
+                        <a href=# class="link-light fw-bold ">
+                            Control Doctors
+                        </a>
+                        <a class="mobile-menu" id="mobile-collapse" href="#">
+                            <i class="feather icon-menu icon-toggle-right"></i>
+                        </a>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-text search-close">
+                                            <i class="feather icon-x input-group-text"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Enter Keyword">
+                                        <span class="input-group-text search-btn">
+                                            <i class="feather icon-search input-group-text"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                          
+                        </ul>
+
+
+                        <ul class="nav-right">
+                            <!--استلام الاشعارات-->
+                            <li class="header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                                        <i class="feather icon-bell"></i>
+                                        <span class="badge bg-c-red"></span>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            <!--استلام الاشعارات-->
+                            <li class="header-notification">
+                                <div class="dropdown-primary dropdown">
+
+                                    <div class="displayChatbox dropdown-toggle" data-bs-toggle="dropdown">
+                                        <i class="feather icon-message-square"></i>
+                                        <span class="badge bg-c-green"></span>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <!--نهاية الاشعارات-->
+
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                                        <img src="~/imgs/DD1.jpg" class="img-radius" alt="User-Profile-Image">
+                                        <span>Zeyad Abdoh</span>
+                                        <i class="feather icon-chevron-down"></i>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <div class="pcoded-main-container" style="margin-top: 78px;">
+                <div class="pcoded-wrapper">
+
+
+
+                    <nav class="pcoded-navbar" navbar-theme="theme1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                        <div class="nav-list">
+                            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+                                <div class="pcoded-inner-navbar main-menu" style="overflow: hidden; width: 100%; height: 100%;">
+                                    <!-- <div class="pcoded-navigation-label" menu-title-theme="theme1">Navigation</div> -->
+                                    <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="solid" subitem-border="false">
+
+
+                                        @if (rol != "User")
+                                        {
+                                            <li class="">
+                                                <a href="" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon">
+                                                        <i class="feather icon-menu"></i>
+                                                    </span>
+                                                    <span class="pcoded-mtext">Control panel</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style1">
+                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                                    <span class="pcoded-mtext">Services</span>
+                                                </a>
+                                                <ul class="pcoded-submenu">
+
+
+                                                    <li class="">
+                                                        <a asp-controller="User" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Users</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a asp-controller="Department" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Department</span>
+                                                        </a>
+                                                    </li>
+
+
+                                                    <li class="">
+                                                        <a asp-controller="Appointment" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Appointment</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a asp-controller="Nurse" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Nurse</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a asp-controller="Room" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Rooms</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <a asp-controller="Doctor" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Doctors</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a asp-controller="MedicalRecord" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">MedicalRecord</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <a asp-controller="Invoice" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Invoice</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a asp-controller="Patient" asp-action="Index" class="waves-effect waves-dark">
+                                                            <span class="pcoded-micon">
+                                                                <i class="feather icon-menu"></i>
+                                                            </span>
+                                                            <span class="pcoded-mtext">Patient</span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                        }
+
+                                        
+
+                                    </ul>
+
+
+
+
+
+
+
+                                </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 137.449px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                            </div>
+                        </div>
+                    </nav>
+
+
+                    <!-- جدول عرض البيانات-->
+                    @RenderBody()
+                    <!--   نهاية الجدول-->
+                    <div id="styleSelector">
+                       
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/pcoded.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/vertical-layout.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Client.Model.Room>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<table class="table">
+  @*    @await Html.PartialAsync("C:/Users/abood/source/repos/asw/Client/Views/Servece/") *@
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Number_room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statues_Room)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartlID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Number_room)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statues_Room)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartlID)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    <a asp-action="Delete1" asp-route-id="@item.ID"> حذف </a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
